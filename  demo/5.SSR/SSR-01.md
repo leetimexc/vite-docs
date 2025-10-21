@@ -21,8 +21,9 @@ scripts: {
 
 ```js
 server.js;
-const express = require("express");
-const { createServer as createViteServer } from "vite";
+import express from "express";
+import fs from 'node:fs/promises';
+import { createServer as createViteServer } from "vite";
 
 const PORT = 4000;
 
@@ -35,7 +36,23 @@ async function setupServer() {
     app.use(vite.middlewares);
 
     app.get("*all", async (req, res) => {
+        // const url = req.originalUrl;
+        try {
+            // const { html } = await vite.transformIndexHtml(url, fs.readFile)
+            const temp = await fs.readFile("./index.html", "utf-8");
+            temp = await vite.transformIndexHtml(req.url, temp);
 
+            const { render } = await vite.ssrLoadModule('/src/server-entry.js')
+            const renderRes = await render(req.url)
+            const html = renderRes && renderRes.html?renderRes.html:'';
+
+            const resHtml = temp.replace('<!-- APP_HTML -->', html)
+            resHtml.set('Content-Type', 'text/html').send(resHtml)
+        } catch (error) {
+            vite.ssrFixStacktrace(error)
+            console.error(error)
+            res.status(500).send("Internal Server Error")
+        }
     })
 
     app.listen(PORT, () => {
@@ -62,9 +79,15 @@ app.mount("#app");
 import { renderToString } from "vue/server-renderer";
 import { createApp } from "./createApp.js";
 
-export function render(_url) {
+export async function render(_url) {
   const app = createApp();
-  return renderToString(app);
+
+  const ctx = {};
+  const html = await renderToString(app, ctx);
+
+  return {
+    html,
+  };
 }
 ```
 
@@ -77,4 +100,13 @@ import App from "./App.vue";
 export function createApp() {
   return createSSRApp(App);
 }
+```
+
+替换根目录下的 index.html 文件
+
+```
+<body>
+    <div id="app"><!-- APP_HTML --></div>
+    <script type="module" src="/src/client-entry.js"></script>
+</body>
 ```

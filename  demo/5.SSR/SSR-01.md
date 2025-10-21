@@ -48,16 +48,33 @@ setupServer()
 
 创建客户端入口 src/client-entry.js
 
+```js
+import "./style.css";
+import { createApp } from "./createApp.js";
+
+const app = createApp();
+app.mount("#app");
+```
+
 创建服务端入口 src/server-entry.js
 
-改造 src/main.js
+```js
+import { renderToString } from "vue/server-renderer";
+import { createApp } from "./createApp.js";
+
+export function render(_url) {
+  const app = createApp();
+  return renderToString(app);
+}
+```
+
+创建应用入口 src/createApp.js
 
 ```js
-// src/main.js
+// src/createApp.js
 import { createSSRApp } from "vue";
 import App from "./App.vue";
 export function createApp() {
-  const app = createSSRApp(App);
-  return { app };
+  return createSSRApp(App);
 }
 ```

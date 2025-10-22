@@ -71,3 +71,6 @@ export default defineConfig([
   },
 ])
 ```
+
+搭建参考文档：
+https://juejin.cn/post/7435449350517801023

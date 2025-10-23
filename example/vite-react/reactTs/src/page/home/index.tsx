@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Dispatch } from "../../model/store";
-import { RootModel } from "../../model/models";
+import type { Dispatch } from "../../model/store";
+import type { RootModel } from "../../model/models";
 import { useEffect } from "react";
 import { getUserInfo } from "../../service";
 

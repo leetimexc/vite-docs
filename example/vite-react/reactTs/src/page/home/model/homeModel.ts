@@ -1,5 +1,5 @@
 import { createModel } from "@rematch/core";
-import { RootModel } from "../../../model/models";
+import type { RootModel } from "../../../model/models";
 import { getUserInfo } from "../../../service";
 
 interface IhomeModelState {}

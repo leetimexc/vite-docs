@@ -13,7 +13,7 @@ export const usePrevious = (value: Location) => {
 };
 
 const useLocationChange = (
-  action: (location: Location, prevLocation?: Location) => void
+  action: (location: Location, prevLocation?: Location) => void,
 ) => {
   const location = useLocation();
   const prevLocation = usePrevious(location);
@@ -23,7 +23,7 @@ const useLocationChange = (
   useEffect(() => {
     const hashPath = window.location.hash.slice(
       0,
-      window.location.hash.indexOf("?")
+      window.location.hash.indexOf("?"),
     );
     if (currentHashRef.current === hashPath) return;
     currentHashRef.current = hashPath;

@@ -10,7 +10,8 @@ export function getGradeOptions(): Promise<OptionItem[]> {
 }
 
 export function getUserInfo(): Promise<any> {
-  return new Promise((resolve, reject) => {
-    resolve({ name: "张三", age: 20 });
+  return http({
+    url: "/mock/userInfo",
+    method: "GET",
   });
 }

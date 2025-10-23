@@ -2,7 +2,9 @@ import { createModel } from "@rematch/core";
 import type { RootModel } from "../../../model/models";
 import { getUserInfo } from "../../../service";
 
-interface IhomeModelState {}
+interface IhomeModelState {
+  useInfo: any;
+}
 
 export const home = createModel<RootModel>()({
   state: {

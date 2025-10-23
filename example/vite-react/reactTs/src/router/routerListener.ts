@@ -11,7 +11,7 @@ import type { NavigateFunction } from "react-router-dom";
 const routerListener = (
   next: NavigateFunction,
   to: Location,
-  from?: Location
+  from?: Location,
 ) => {
   console.log("next", next, "from", from, "to", to);
 

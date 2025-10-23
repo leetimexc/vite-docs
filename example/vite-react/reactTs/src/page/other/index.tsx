@@ -1,8 +1,10 @@
 import React from "react";
+import "./index.css";
+
 const Other = () => {
   return (
-    <div>
-      <h1>Other</h1>
+    <div className="container">
+      <h1 className="title">Other</h1>
     </div>
   );
 };

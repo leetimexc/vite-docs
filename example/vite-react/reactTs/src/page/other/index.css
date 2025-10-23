@@ -1,0 +1,11 @@
+/* src/page/other/index.module.css */
+.container {
+  border: 1px solid red;
+}
+
+.title {
+  font-size: 32px;
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: bold;
+}

@@ -1,5 +1,5 @@
-import type { Location } from '@remix-run/router'
-import { NavigateFunction } from 'react-router-dom'
+import type { Location } from "@remix-run/router";
+import type { NavigateFunction } from "react-router-dom";
 
 /**
  * 全局路由监听
@@ -13,7 +13,7 @@ const routerListener = (
   to: Location,
   from?: Location
 ) => {
-  console.log('from', from, 'to', to)
+  console.log("next", next, "from", from, "to", to);
 
   // 逻辑处理
   // 权限控制
@@ -21,6 +21,6 @@ const routerListener = (
   // 数据获取与加载控制
   // 导航控制埋点
   // ......
-}
+};
 
-export default routerListener
+export default routerListener;

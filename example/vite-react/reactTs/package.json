@@ -12,6 +12,17 @@
     "preview": "vite preview",
     "prepare": "husky"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,jsx,tsx}": [
+      "eslint --fix",
+      "eslint"
+    ]
+  },
   "dependencies": {
     "@rematch/core": "^2.2.0",
     "@remix-run/router": "^1.23.0",

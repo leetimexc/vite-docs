@@ -5,6 +5,8 @@ import { setupCounter } from './counter.js'
 
 document.querySelector('#app').innerHTML = `
   <div>
+    <p>当前版本：${__APP_VERSION__}</p>
+    <p>API 地址：${__API_URL__}</p>
     <a href="https://vite.dev" target="_blank">
       <img src="${viteLogo}" class="logo" alt="Vite logo" />
     </a>
